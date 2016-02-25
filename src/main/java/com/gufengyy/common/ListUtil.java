@@ -165,7 +165,7 @@ public abstract class ListUtil {
     }
 
     /**
-     * 将String类型的列表转化为Double类型的列表。不抛出异常，将非Long类型的元素由Double代替。
+     * 将String类型的列表转化为Float类型的列表。不抛出异常，将非Long类型的元素由defaultValue代替。
      * 
      * @param input
      * @param defaultValue
@@ -178,7 +178,7 @@ public abstract class ListUtil {
     }
 
     /**
-     * 将String类型的列表转化为Double类型的列表。不抛出异常，将非Long类型的元素由Double代替。
+     * 将String类型的列表转化为Double类型的列表。不抛出异常，将非Long类型的元素由defaultValue代替。
      * 
      * @param input
      * @param defaultValue
