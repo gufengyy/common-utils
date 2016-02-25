@@ -1,5 +1,6 @@
 package com.gufengyy.common;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -189,5 +190,43 @@ public abstract class ListUtil {
             Double defaultValue) {
         return (List<Double>) string2NumberIngoreException(input,
                 x -> Double.parseDouble(x), defaultValue);
+    }
+    
+    /**
+     * 分割List
+     *
+     * @param list
+     *            待分割的list
+     * @param pageSize
+     *            每段list的大小
+     * @return List<<List<T>>
+     */
+    public static <T> List<List<T>> split(List<T> list, int pageSize) {
+        if (pageSize <= 0) {
+            throw new IllegalArgumentException("pageSize can not less than 0!");
+        }
+        if (list.size() <= pageSize) {
+            return new ArrayList<List<T>>() {
+                private static final long serialVersionUID = 5482908503416919370L;
+
+                {
+                    add(list);
+                }
+            };
+        }
+        List<List<T>> result = new ArrayList<List<T>>();
+        List<T> subList = new ArrayList<T>(pageSize);
+        for (T x : list) {
+            subList.add(x);
+            if (pageSize == subList.size()) {
+                result.add(subList);
+                subList = new ArrayList<T>(pageSize);
+            }
+        }
+
+        if (subList.size() != 0) {
+            result.add(subList);
+        }
+        return result;
     }
 }
