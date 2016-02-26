@@ -2,6 +2,7 @@ package com.gufengyy.common;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -173,7 +174,8 @@ public abstract class ListUtil {
      * @return
      */
     @SuppressWarnings("unchecked")
-    public static List<Float> string2Float(List<String> input, Float defaultValue) {
+    public static List<Float> string2Float(List<String> input,
+            Float defaultValue) {
         return (List<Float>) string2NumberIngoreException(input,
                 x -> Float.parseFloat(x), defaultValue);
     }
@@ -191,7 +193,7 @@ public abstract class ListUtil {
         return (List<Double>) string2NumberIngoreException(input,
                 x -> Double.parseDouble(x), defaultValue);
     }
-    
+
     /**
      * 分割List
      *
@@ -202,20 +204,20 @@ public abstract class ListUtil {
      * @return List<<List<T>>
      */
     public static <T> List<List<T>> split(List<T> list, int pageSize) {
+        Objects.requireNonNull(list);
         if (pageSize <= 0) {
             throw new IllegalArgumentException("pageSize can not less than 0!");
         }
         if (list.size() <= pageSize) {
             return new ArrayList<List<T>>() {
                 private static final long serialVersionUID = 5482908503416919370L;
-
                 {
                     add(list);
                 }
             };
         }
-        List<List<T>> result = new ArrayList<List<T>>();
-        List<T> subList = new ArrayList<T>(pageSize);
+        List<List<T>> result = new ArrayList<>();
+        List<T> subList = new ArrayList<>(pageSize);
         for (T x : list) {
             subList.add(x);
             if (pageSize == subList.size()) {
