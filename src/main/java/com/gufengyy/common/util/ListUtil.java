@@ -1,4 +1,4 @@
-package com.gufengyy.common;
+package com.gufengyy.common.util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ public abstract class ListUtil {
      * @param function
      * @return
      */
-    public static <R, T> List<R> operator(List<T> input, Function<T, R> function) {
+    private static <R, T> List<R> operator(List<T> input, Function<T, R> function) {
         return input.stream().map(t -> function.apply(t))
                 .collect(Collectors.toList());
     }
@@ -127,7 +127,7 @@ public abstract class ListUtil {
                 x -> Double.parseDouble(x));
     }
 
-    public static List<? extends Number> string2NumberIngoreException(
+    private static List<? extends Number> string2NumberIngoreException(
             List<String> input, Function<String, ? extends Number> function,
             Number defaultValue) {
         return operator(input, x -> {

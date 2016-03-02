@@ -1,8 +1,9 @@
-package com.gufengyy.common;
+package com.gufengyy.common.util;
 
 import java.util.List;
 
 import com.google.common.collect.Lists;
+import com.gufengyy.common.util.ListUtil;
 
 import junit.framework.TestCase;
 
@@ -10,7 +11,7 @@ public class ListUtilTest extends TestCase {
 
     public void testOperator() {
         List<Integer> list = Lists.newArrayList(1, 2, 3, 4, 5);
-        List<String> result = ListUtil.operator(list, x -> String.valueOf(x));
+        List<String> result = ListUtil.number2String(list);
         for (int i = 0; i < result.size(); i++) {
             assertTrue(result.get(i) instanceof String);
             assertEquals(String.valueOf(list.get(i)), result.get(i));
@@ -18,8 +19,7 @@ public class ListUtilTest extends TestCase {
 
         List<Double> doubleList = Lists.newArrayList(1.0d, 2.1d, 3.3d, 4.5d,
                 5.6d);
-        List<String> douleResult = ListUtil.operator(doubleList,
-                x -> String.valueOf(x));
+        List<String> douleResult = ListUtil.number2String(doubleList);
         for (int i = 0; i < result.size(); i++) {
             assertTrue(douleResult.get(i) instanceof String);
             assertEquals(String.valueOf(doubleList.get(i)), douleResult.get(i));
