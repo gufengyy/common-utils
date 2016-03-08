@@ -22,9 +22,9 @@ public abstract class ListUtil {
      * @param function
      * @return
      */
-    private static <R, T> List<R> operator(List<T> input, Function<T, R> function) {
-        return input.stream().map(t -> function.apply(t))
-                .collect(Collectors.toList());
+    private static <R, T> List<R> operator(List<T> input,
+            Function<T, R> function) {
+        return input.stream().map(function).collect(Collectors.toList());
     }
 
     /**
@@ -71,13 +71,7 @@ public abstract class ListUtil {
             } catch (Exception ignore) {
                 return null;
             }
-        }).stream().filter(x -> {
-            if (x != null) {
-                return true;
-            } else {
-                return false;
-            }
-        }).collect(Collectors.toList());
+        }).stream().filter(x -> x != null).collect(Collectors.toList());
     }
 
     /**
