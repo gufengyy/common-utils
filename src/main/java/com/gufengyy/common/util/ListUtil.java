@@ -225,4 +225,32 @@ public abstract class ListUtil {
         }
         return result;
     }
+
+    /**
+     * 
+     * @param list
+     * @param fromIndex
+     *            low endpoint (inclusive) of the subList
+     * @param toIndex
+     *            high endpoint (exclusive) of the subList
+     * @return
+     */
+    public static <T> List<T> subList(List<T> list, int fromIndex, int toIndex) {
+        int size = list.size();
+        if (toIndex > size) {
+            toIndex = size;
+        }
+        if (fromIndex >= size) {
+            return new ArrayList<>();
+        }
+        return list.subList(fromIndex, toIndex);
+    }
+
+    public static <T> List<T> union(final List<List<T>> list) {
+        List<T> result = new ArrayList<>();
+        list.forEach(value -> {
+            result.addAll(value);
+        });
+        return result;
+    }
 }
